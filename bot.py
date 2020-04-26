@@ -1,38 +1,37 @@
-import time
-import telebot
-import pyspeedtest
-from datetime import datetime
-#import degani bu osha requirements.txt fayli ichidagi modullarni import qilib olyapti yani chaqirib olyaptim
+bot = TeleBot(BOT_TOKEN)
 
-TOKEN = "token joyi" #token joyi
-bot = telebot.TeleBot(token=TOKEN)
 
-def findat(msg):
-
-    for i in msg:
-        if '@' in i:
-            return i
-
-@bot.message_handler(commands=['start'])
-def send_welcome(message):
-  sped = "Tezlik: "
-  start = datetime.now()
-  msge = bot.reply_to(message, sped)
-  end = datetime.now()
-  ms = (end - start).microseconds / 1000
-  speed = sped + str(ms)
-  bot.edit_message_text(speed,chat_id=msge.chat.id, message_id=msge.message_id)
-
-@bot.message_handler(func=lambda msg: msg.text is not None and '@' in msg.text)
-
-def at_converter(message):
-    texts = message.text.split()
-    at_text = findat(texts)
-    if at_text == '@': 
-        pass
-    else:
-        insta_link = "https://instagram.com/{}".format(at_text[1:])
-        bot.reply_to(message, insta_link)
+@bot.message_handler(content_types=['new_chat_member'])
+def new_chat_member_handler(message: Message):
+    try:
+        bot.restrict_chat_member(
+            message.chat.id,
+            message.from_user.id,
+            until_date=None,
+            can_send_messages=False,
+            can_send_media_messages=True,
+            can_send_other_messages=False,
+            can_add_web_page_previews=False
+        )
+    except ApiException:
+        bot.send_message(
+            message.chat.id,
+            "Please, promote me to admin."
+        )
         
+        
+bot.polling()
+$admin=123123;//Admin ID raqami
+$chat_id = $message->chat->id;
+$message_id = $message->message_id;
+$fadmin = $message->from->id;
+if($admin!=$fadmin){
+    if($update->message->video || $update->message->photo){
+    }else{
+    Bot('deletemessage',[
+    'chat_id'=>$chat_id,
+    'message_id'=>$message_id
+    ]);    
+    }
     
-bot.polling(none_stop=True) #biu doimo kod oxirida huddi shunday turishi kerak.
+}
