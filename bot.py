@@ -1,4 +1,4 @@
-bot = TeleBot(BOT_TOKEN)
+bot = TeleBot(1227767014:AAGbATukzvKZg0_7eWaxE8vAPC14oXNKLAc)
 
 
 @bot.message_handler(content_types=['new_chat_member'])
