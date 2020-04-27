@@ -21,17 +21,3 @@ def new_chat_member_handler(message: Message):
         
         
 bot.polling()
-$admin=123123;//Admin ID raqami
-$chat_id = $message->chat->id;
-$message_id = $message->message_id;
-$fadmin = $message->from->id;
-if($admin!=$fadmin){
-    if($update->message->video || $update->message->photo){
-    }else{
-    Bot('deletemessage',[
-    'chat_id'=>$chat_id,
-    'message_id'=>$message_id
-    ]);    
-    }
-    
-}
